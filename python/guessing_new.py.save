@@ -1,0 +1,42 @@
+"""guess_game_fun
+Guess Game with a Function
+In this project the guess game is recast using a function"""
+
+import random
+
+computers_number = random.randint(1,100)
+PROMPT = 'What is your guess? '
+
+# New constants
+QUIT = -1
+QUIT_TEXT = -'q'
+QUIT_MESSAGE = 'Thank you for playing'
+CONFIRM_QUIT_MESSAGE = 'Are you sure you want to quit (Y/n)? '
+
+# New confirm_quit function
+def confirm_quit():
+    """Ask user to confirm that they want to quit
+    default to yes
+    Return True (yes, quit) or False (no, don't quit) """
+    spam = input(CONFIRM_QUIT_MESSAGE)
+    if spam == 'n':
+        return False
+    else:
+        return True
+
+def do_guess_round():
+    """Choose a random number, ask the user for a guess
+    check whether the guess is true
+    and repeat until the useris correct"""
+    computers_number = random.randint(1,100)
+    number_of_guesses = 0
+  while True:
+      players_guess = input(PROMPT)
+      # new if clause to test against quit
+      if players_guess == QUIT_TEXT:
+          if confirm_quit():
+              return QUIT
+          else:
+              continue # that is, do next round of loop
+      number_of_guesses = number_of_guesses+1
+
